@@ -12,11 +12,12 @@ my $passfail = 0;
 $reddit = PAWR->new();
 
 eval {
-$resp_hash = $reddit->get_link_info("52ewbi");
+$resp_hash = $reddit->get_user_info("test");
 
-
+unless($resp_hash->{id} =~ m/[\w\d]/){ $passfail = 1;}	
 };
-print("\n* TEST 1:: GET_LINK_INFO FULL seems to ");
+
+print("\n* TEST 1:: GET_USER_INFO FULL seems to ");
 if($@){
 	$passfail = 1;
 	print("FAIL... maybe update comment link");
