@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
-# GET_USER_INFO_TEST
-# tests the PAWR function get_user_info
+# GET_USER_OVERVIEW_TEST
+# tests the PAWR function get_user_overview
 
 use lib "$ENV{HOME}/GIT/PAWR/lib";
 use PAWR;
@@ -12,13 +12,13 @@ my $passfail = 0;
 $reddit = PAWR->new();
 
 eval {
-$resp_hash = $reddit->get_user_info("test");
-
-unless($resp_hash->{id} =~ m/[\w\d]/){ $passfail = 1;}	
+$resp_hash = $reddit->get_user_overview({username =>"perl_bot"});
+unless(@{$resp_hash}[0]->{'subreddit_id'} =~ m/^t\d_/){$passfail = 1}
 };
 
-print("\n* TEST 1:: GET_USER_INFO FULL seems to ");
+print("\n* TEST 1:: GET_USER_OVERVIEW FULL seems to ");
 if($@){
+	print("\n$@\n");
 	$passfail = 1;
 	print("FAIL... maybe update comment link");
 	exit 1;

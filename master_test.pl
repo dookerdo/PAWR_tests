@@ -5,7 +5,9 @@ print("INITIATING TEST...\n\n");
 
 @tests = ("get_link_info_test.pl",
 	"get_subreddit_test.pl",
-	"get_user_info_test.pl");
+	"get_user_info_test.pl",
+	"get_user_overview_test.pl",
+);
 foreach(@tests){
 	sleep(4);
 	chomp;
